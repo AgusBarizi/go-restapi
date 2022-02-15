@@ -1,0 +1,28 @@
+### Get All Categories
+GET http://127.0.0.1:3000/api/categories
+Accept: application/json
+
+### Get Single Category By Id
+GET http://127.0.0.1:3000/api/category/2
+Accept: application/json
+
+### Create Category
+POST http://127.0.0.1:3000/api/category
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name" : "Gadget"
+}
+
+### Update Category By Id
+PUT http://127.0.0.1:3000/api/category/1
+Accept: application/json
+
+{
+  "name" : "Fashion"
+}
+
+### Delete Category By Id
+DELETE http://127.0.0.1:3000/api/category/2
+Accept: application/json
