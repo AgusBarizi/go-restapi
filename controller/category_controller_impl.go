@@ -75,7 +75,7 @@ func (controller CategoryControllerImpl) FindById(writer http.ResponseWriter, re
 
 	apiResponse := dto.ApiResponse{
 		Code:   200,
-		Status: "Ok",
+		Status: "OK",
 		Data:   categoryResponse,
 	}
 	helper.WriteToResponseBody(writer, apiResponse)
@@ -86,7 +86,7 @@ func (controller CategoryControllerImpl) FindAll(writer http.ResponseWriter, req
 
 	apiResponse := dto.ApiResponse{
 		Code:   200,
-		Status: "Ok",
+		Status: "OK",
 		Data:   categoryResponses,
 	}
 	helper.WriteToResponseBody(writer, apiResponse)
