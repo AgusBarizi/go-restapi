@@ -1,22 +1,26 @@
 ### Get All Categories
 GET http://127.0.0.1:3000/api/categories
+X-API-Key: secret
 Accept: application/json
 
 ### Get Single Category By Id
-GET http://127.0.0.1:3000/api/category/2
+GET http://127.0.0.1:3000/api/category/20
+X-API-Key: secret
 Accept: application/json
 
 ### Create Category
 POST http://127.0.0.1:3000/api/category
+X-API-Key: secret
 Accept: application/json
 Content-Type: application/json
 
 {
-  "name" : "Gadget"
+  "name" : "test"
 }
 
 ### Update Category By Id
 PUT http://127.0.0.1:3000/api/category/1
+X-API-Key: secret
 Accept: application/json
 
 {
@@ -25,4 +29,5 @@ Accept: application/json
 
 ### Delete Category By Id
 DELETE http://127.0.0.1:3000/api/category/2
+X-API-Key: secret
 Accept: application/json
