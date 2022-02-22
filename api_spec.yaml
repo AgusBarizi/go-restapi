@@ -1,0 +1,197 @@
+openapi: 3.0.3
+info:
+  title: Go RestApi
+  description: Go RestApi
+  version: 1.0.0
+servers:
+  - url: 'http://127.0.0.1:3000/api'
+paths:
+  "/categories":
+    get:
+      description: "List all categories"
+      tags:
+        - Category Api
+      security:
+        - CategoryAuth: []
+      responses:
+        200:
+          description: "Success get all categories"
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/apiResponse"
+                  - example:
+                      code: 200
+                      status: "OK"
+                      data:
+                        - id: 1
+                          name: "teknologi"
+                        - id: 2
+                          name: "fashion"
+  "/category":
+    post:
+      description: "Create category"
+      tags:
+        - Category Api
+      security:
+        - CategoryAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/categoryCreateRequest"
+                - example:
+                    name: "Teknologi"
+      responses:
+        200:
+          description: "Success create category"
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/apiResponse"
+                  - example:
+                      code: 200
+                      status: "Data was created"
+                      data:
+                        id: 1
+                        name: "Teknologi"
+
+  "/category/{category_id}":
+    get:
+      description: "Get category by id"
+      tags:
+        - Category Api
+      security:
+        - CategoryAuth: []
+      parameters:
+        - in: path
+          name: "category_id"
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        200:
+          description: "Success get category by id"
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/apiResponse"
+                  - example:
+                      code: 200
+                      status: "OK"
+                      data:
+                        id: 1
+                        name: "Teknologi"
+    put:
+      description: "Update category by id"
+      tags:
+        - Category Api
+      security:
+        - CategoryAuth: []
+      parameters:
+        - in: path
+          name: "category_id"
+          required: true
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/categoryUpdateRequest"
+                - example:
+                    name: "Fashion"
+      responses:
+        200:
+          description: "Success update category"
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/apiResponse"
+                  - example:
+                      code: 200
+                      status: "Data was updated"
+                      data:
+                        id: 1
+                        name: "Fashion"
+    delete:
+      description: "Delete category by id"
+      tags:
+        - Category Api
+      security:
+        - CategoryAuth: []
+      parameters:
+        - in: path
+          name: "category_id"
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/apiResponse"
+                  - example:
+                      code: 200
+                      status: "Data was deleted"
+
+
+components:
+  securitySchemes:
+    CategoryAuth:
+      type: apiKey
+      in: header
+      name: "X-API-Key"
+      description: "Authentication for Category API"
+  schemas:
+    categoryCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+
+    categoryUpdateRequest:
+      properties:
+        name:
+          type: string
+
+    categoryResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+
+    apiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          default: 200
+        status:
+          type: string
+          default: "OK"
+        data:
+          nullable: true
+          oneOf:
+            - type: array
+            - type: object
+          default: null
+
+
+  
